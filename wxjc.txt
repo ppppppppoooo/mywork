@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
+	</head>
+		
+	<body>
+		<div id="ctx">
+			<div style="background-color: #f7ffff;height:50px;display:flex;justify-content: space-between;">
+				<p style="font-size:28px;margin-top:8px;" class="col-xs-2">接车登记</p>
+				<div style="margin-top: 10px;" >
+					<input type="text"placeholder="匹配车牌号/车架号/手机/客户"style="width: 200px;">
+					<button type="button" class="btn btn-warning">
+					<span>搜索</span>
+				</button>
+					<button type="button" class="btn btn-default" style="margin-right: 15px;">关闭</button>
+				</div>
+			</div>
+			<div >
+				<div  class="text-right" style="font-size: 18px;">
+						<span class="glyphicon glyphicon-list-alt" @click="toadd()"style="color: #D58512;"></span> 维修接车
+						<span class="glyphicon glyphicon-plus-sign"style="color: #D58512;"@click="toadde()"></span> 救援开单
+						<span class="glyphicon glyphicon-screenshot"style="color: #D58512;"></span> 关注公众号
+				</div>
+				<div style="display:flex;justify-content: space-between;width: 500px;margin-left: 15px;">
+				<div>
+					<p style="color: #5BC0DE;">公众号会员码</p>
+					<p><input type="text" style="border-top-style: none; border-right-style: none; border-left-style: none; border-bottom-style: solid"></p>
+					<p style="color: #5BC0DE;">车主信息</p>
+					<div>
+						<p>姓名：{{clist.clients.name}}</p>
+						<p>地址：{{clist.address}}</p>
+						<p>驾驶：{{clist.carer}}</p>
+					</div>
+				</div>
+				<div> 
+					<p style="color: #5BC0DE;">车牌号<a href="vehiclejc.html" class="glyphicon glyphicon-triangle-bottom"></a></p>
+					<p><input type="text" v-model="clist.carnumber"style="border-top-style: none; border-right-style: none; border-left-style: none; border-bottom-style: solid"></p>
+					<p style="color: #5BC0DE;">车辆信息</p>
+					<div>
+						<p>品牌：{{clist.cartype.name}}</p>
+						<p>发动机：{{clist.cartype.datacar.name}}</p>
+						<p>保养日期：{{clist.maintaindate}}</p>
+					</div>
+				</div>
+				</div>
+			</div>
+			<div style="width:1240px;">
+				<div style="margin-left:15px;">
+					<ul class="nav nav-tabs" role="tablist">
+			    		<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">作业中车辆</a></li>
+			    		<li role="presentation"><a href="#wxls" aria-controls="wxls" role="tab" data-toggle="tab">维修历史</a></li>
+			    		<li role="presentation"><a href="#wxxm" aria-controls="wxxm" role="tab" data-toggle="tab">维修项目</a></li>
+			    		<li role="presentation"><a href="#llqk" aria-controls="llqk" role="tab" data-toggle="tab">领料情况</a></li>
+			    		<li role="presentation"><a href="#lshf" aria-controls="lshf" role="tab" data-toggle="tab">历史回访</a></li>
+			  		</ul>
+				</div>
+				<div class="tab-content">
+					<div role="tabpanel" class="tab-pane active" id="home">
+				<table class="table table-bordered" style="margin-left:15px;">
+					<tr style="background-color:#5BC0DE;color: white;">
+						<th></th>
+						<th>单据状态</th>
+						<th>业务类型</th>
+						<th>客户名称</th>
+						<th>车牌号</th>
+						<th>手机</th>
+						<th>会员卡号</th>
+						<th>结算时间</th>
+						<th>消费金额</th>
+						<th>开单时间</th>
+						<th>预计完工</th>
+						<th>完工时间</th>
+						<th>误工原因</th>
+						<th>返工数</th>
+					</tr>
+					<tr v-for="item in list">
+						<td style="background-color:#CCCCCC"></td>
+						<td>{{item.type}}</td>
+						<td>{{item.client.cartype.name}}</td>
+						<td>{{item.client.clients.name}}</td>
+						<td>{{item.client.carnumber}}</td>
+						<td>{{item.client.carerphone}}</td>
+						<td>{{item.client.clients.vipnum}}</td>
+						<td>{{item.settledate}}</td>
+						<td>{{item.price}}</td>
+						<td>{{item.pickdate}}</td>
+						<td>{{item.overworkdate}}</td>
+						<td>{{item.completedate}}</td>
+						<td>{{item.delay.delaysreason}}</td>
+						<td>{{item.reworknumber}}</td>
+					</tr>
+				</table>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="wxls">
+				<table class="table table-bordered" style="margin-left:15px;">
+					<tr style="background-color:#5BC0DE;color: white;">
+						<th></th>
+						<th>维修单号</th>
+						<th>接车时间</th>
+						<th>业务类型</th>
+						<th>完工时间</th>
+						<th>客户名称</th>
+						<th>车牌号</th>
+						<th>手机</th>
+						<th>会员卡号</th>
+						<th>结算时间</th>
+						<th>消费金额</th>
+					</tr>
+					<tr>
+						<td style="background-color:#CCCCCC"></td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+					</tr>
+				</table>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="wxxm">
+				<table class="table table-bordered" style="margin-left:15px;">
+					<tr style="background-color:#5BC0DE;color: white;">
+						<th></th>
+						<th>维修单号</th>
+						<th>接车时间</th>
+						<th>业务类型</th>
+						<th>完工时间</th>
+						<th>结算时间</th>
+						<th>项目编码</th>
+						<th>项目名称</th>
+						<th>价类</th>
+						<th>结算工时</th>
+						<th>工时金额</th>
+						<th>作业人员</th>
+						<th>故障描述</th>
+						<th>故障确认</th>
+						<th>工单号</th>
+						<th>工位</th>
+						
+					</tr>
+					<tr>
+						<td style="background-color:#CCCCCC"></td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+					</tr>
+				</table>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="llqk">
+				<table class="table table-bordered" style="margin-left:15px;">
+					<tr style="background-color:#5BC0DE;color: white;">
+						<th></th>
+						<th>维修单号</th>
+						<th>接车时间</th>
+						<th>业务类型</th>
+						<th>完工时间</th>
+						<th>结算时间</th>
+						<th>类别</th>
+						<th>领料日期</th>
+						<th>领料人</th>
+						<th>物料编码</th>
+						<th>物料名称</th>
+						<th>单价</th>
+						<th>金额</th>
+						<th>服务顾问</th>
+						<th>对应项目</th>
+					</tr>
+					<tr>
+						<td style="background-color:#CCCCCC"></td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+					</tr>
+				</table>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="lshf">
+				<table class="table table-bordered" style="margin-left:15px;">
+					<tr style="background-color:#5BC0DE;color: white;">
+						<th></th>
+						<th>回访内容</th>
+						<th>回访时间</th>
+						<th>客户编码</th>
+						<th>客户名称</th>
+						<th>地址</th>
+						<th>车牌号</th>
+						<th>手机</th>
+						<th>电话</th>
+						<th>维修项目</th>
+						<th>单据类型</th>
+						<th>回访效果</th>
+						<th>服务顾问</th>
+						<th>详细说明</th>
+						<th>开单人</th>
+					</tr>
+					<tr>
+						<td style="background-color:#CCCCCC"></td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+					</tr>
+				</table>
+				</div>
+				</div>
+			</div>
+			
+		</div>
+		<script src="../js/jquery-1.12.4.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var vm = new Vue({
+				el: "#ctx",
+				data() {
+					return {
+						list: {},
+						caid:"",
+						clist:{
+							clients:{
+								name:""
+							},
+							cartype:{
+								name:"",
+								datacar:{
+									name:""
+								}
+							}
+						}
+					}
+				},
+				methods: {
+					toadd() {
+						var that=this;
+						if(that.caid!=" "){
+							window.location.href="wxdjc.html?caid="+that.caid;
+						}else{
+							confirm("请先选择维修的车辆");
+						}
+					},
+					toadde() {
+						var that=this;
+						if(that.caid!=" "){
+							window.location.href="jykd.html?caid="+that.caid;
+						}else{
+							confirm("请先选择维修的车辆");
+						}
+					},
+					find() {
+						var that = this; 
+						var url = `http://localhost:8899/Jc/findAll`;
+						$.ajax({
+							url: url,
+							xhrFields: { withCredentials: true },
+							crossDomain: true,
+							success: function(res) {
+								console.log(res);
+								that.list = res;
+							}
+						});
+					},findByid(){
+						var that=this;
+						var w=window.location.href.indexOf("=");
+						that.caid=window.location.href.substring(w+1);
+						var cid=that.caid;
+						var url = `http://localhost:8899/Jc/findByid/${cid}`;
+						$.ajax({
+							url: url,
+							xhrFields: { withCredentials: true },
+							crossDomain: true,
+							success: function(res) {
+								console.log(res);
+								that.clist = res;
+							}
+						});
+					}
+				},created() {
+					console.log(this.caid);
+					if(this.cid!=" "){
+						this.findByid();
+					}
+						this.find();
+					
+				}
+			});
+		</script>
+	</body>
+</html>
